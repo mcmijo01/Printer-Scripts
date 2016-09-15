@@ -1,0 +1,380 @@
+REM	This script is intended for Luther students.
+REM	It installs Luther-owned network printers 
+REM	on student machines.
+REM	
+REM	All comments will be made on the line before the line that the comment is about
+REM
+REM	Created by Johnathan McMichael
+REM	v. 0.97 Aug 11 2016
+REM
+REM	Version changes: versioning problem caused mismatch between driver and "m/" (model) tag, 
+REM Typo in path to HP UPD driver was incorrect. Added extra text for HP printers to alert user
+REM that this printer takes longer than others to install.
+REM
+REM 	********************
+
+REM 	********************
+REM	***Initialization Section
+REM 	********************
+
+REM	***Set color ****
+REM	(white text with dark blue background)
+COLOR 17
+
+REM 	***Remove command prompt (makes program look cleaner) ***
+ECHO OFF
+
+REM 	***clear screen***
+CLS
+
+REM 	********************
+REM		***Main Menu Section
+REM 	********************
+:MENU
+
+REM 	***clear screen***
+CLS
+
+REM 	***set color***
+COLOR 17
+
+REM 	***display menu***
+ECHO --------------------------------------------------
+ECHO  Which type of printer would you like to install?
+ECHO --------------------------------------------------
+ECHO R. Residence Hall
+ECHO L. Lab
+ECHO C. Computer Classroom
+ECHO.
+ECHO X. Exit program
+ECHO.
+REM 	***end of menu***
+
+
+REM	***Prompt***
+SET /P M=Select a number, then press ENTER:
+
+REM	*****Handling*****
+REM 	***Goto residence hall menu***
+IF %M%==R GOTO RESPRINTERS
+IF %M%==r GOTO RESPRINTERS
+
+REM 	***Goto lab menu***
+IF %M%==L GOTO LABPRINTERS
+IF %M%==l GOTO LABPRINTERS
+
+REM	***Goto classroom menu***
+IF %M%==C GOTO CRPRINTERS
+IF %M%==c GOTO CRPRINTERS
+
+IF %M%==ALL GOTO ALLPRINTERS
+IF %M%==TEST GOTO TEST
+
+REM 	***closes program***
+IF %M%==X GOTO EOF
+IF %M%==x GOTO EOF
+
+REM 	********************
+REM		***Residence Hall Section
+REM 	********************
+:RESPRINTERS
+
+REM 	***clear screen***
+CLS
+
+REM 	***set color***
+COLOR 17
+
+REM 	***display menu***
+ECHO --------------------------------
+ECHO  Install Residence Hall Printer
+ECHO --------------------------------
+ECHO 1. Location
+ECHO 2. Location
+ECHO 3. Location
+ECHO 4. Location
+ECHO 5. Location
+ECHO 6. Location
+ECHO 7. Location
+ECHO 8. Location
+ECHO.
+ECHO ------- Other Options ---------
+ECHO L. Install Lab Printer
+ECHO C. Install Computer Classroom Printer
+ECHO.
+ECHO X. Exit Program
+ECHO.
+REM 	***end of menu
+
+REM 	***Prompt***
+SET /P R=Select a number, then press ENTER:
+
+REM		*****Handling*****
+
+REM 	***goes to lab menu
+IF %R%==L GOTO LABPRINTERS
+IF %R%==l GOTO LABPRINTERS
+
+REM 	***goes to classroom menu
+IF %R%==C GOTO CRPRINTERS
+IF %R%==c GOTO CRPRINTERS
+
+REM 	***closes program
+IF %R%==X GOTO EOF
+IF %R%==x GOTO EOF
+
+REM		***printer therefore selected, ask user to wait
+CLS
+ECHO	Please wait while your printer is installed. This may take a moment.
+ECHO	You will be prompted to press a key when finished.
+ECHO.
+
+
+REM		***Add Location***
+IF %R%==1 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+ECHO.
+ECHO Note: This printer takes much longer than others to install (~1-3 min)
+ECHO.
+IF %R%==1 rundll32 printui.dll,PrintUIEntry /ia /m "HP Universal Printing PCL 6" /h "x64" /v 3 /f "%~dp0\Drivers\HP UPD\hpcu186u.inf"
+IF %R%==1 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\HP UPD\hpcu186u.inf" /r ">print_queue<" /m "HP Universal Printing PCL 6"
+
+REM		***Add Location***
+IF %R%==2 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %R%==2 rundll32 printui.dll,PrintUIEntry /ia /m "PCL6 Driver for Universal Print" /f "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf"
+IF %R%==2 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf" /r ">print_queue<" /m "PCL6 Driver for Universal Print"
+
+REM		***Add Location
+IF %R%==3 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %R%==3 rundll32 printui.dll,PrintUIEntry /ia /m "PCL6 Driver for Universal Print" /f "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf"
+IF %R%==3 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf" /r ">print_queue<" /m "PCL6 Driver for Universal Print"
+
+REM		***Add Location***
+IF %R%==4 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %R%==4 rundll32 printui.dll,PrintUIEntry /ia /m "PCL6 Driver for Universal Print" /f "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf"
+IF %R%==4 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf" /r ">print_queue<" /m "PCL6 Driver for Universal Print"
+
+REM		***Add Location***
+IF %R%==5 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %R%==5 rundll32 printui.dll,PrintUIEntry /ia /m "PCL6 Driver for Universal Print" /f "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf"
+IF %R%==5 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf" /r ">print_queue<" /m "PCL6 Driver for Universal Print"
+
+REM		***Add Location
+IF %R%==6 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %R%==6 rundll32 printui.dll,PrintUIEntry /ia /m "PCL6 Driver for Universal Print" /f "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf"
+IF %R%==6 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf" /r ">print_queue<" /m "PCL6 Driver for Universal Print"
+
+REM		***Add Location
+IF %R%==7 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %R%==7 rundll32 printui.dll,PrintUIEntry /ia /m "PCL6 Driver for Universal Print" /f "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf"
+IF %R%==7 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf" /r ">print_queue<" /m "PCL6 Driver for Universal Print"
+
+REM		***Add Location
+IF %R%==8 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %R%==8 rundll32 printui.dll,PrintUIEntry /ia /m "PCL6 Driver for Universal Print" /f "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf"
+IF %R%==8 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf" /r ">print_queue<" /m "PCL6 Driver for Universal Print"
+
+ECHO.
+ECHO Printer installed.
+PAUSE
+
+REM		***Loop to Menu***
+GOTO MENU
+
+REM 	********************
+REM		***Lab Section
+REM 	********************
+:LABPRINTERS
+
+REM 	***clear screen***
+CLS
+
+REM 	***set color***
+COLOR 17
+
+REM 	***display menu***
+ECHO ------------------------------
+ECHO  Install Computer Lab Printer
+ECHO ------------------------------
+ECHO 1. Location
+ECHO 2. Location
+ECHO 3. Location
+ECHO 4. Location
+ECHO 5. Location
+ECHO 6. Location
+ECHO 7. Location
+ECHO 8. Location
+ECHO 9. Location
+ECHO.
+ECHO ------- Other Options ---------
+ECHO R. Install Residence Hall Printer
+ECHO C. Install Computer Classroom Printer
+ECHO.
+ECHO X. Exit Program
+REM 	***end of menu
+
+REM 	***this calls for a selection. everything after the = is what the user will see
+SET /P L=Select a number, then press ENTER:
+
+REM 	***goes to residence hall menu
+IF %L%==R GOTO RESPRINTERS
+IF %L%==r GOTO RESPRINTERS
+
+REM 	***goes to classroom menu
+IF %L%==C GOTO CRPRINTERS
+IF %L%==c GOTO CRPRINTERS
+
+REM 	***closes program
+IF %L%==X GOTO EOF
+IF %L%==x GOTO EOF
+
+REM		***printer therefore selected, ask user to wait
+CLS
+ECHO	Please wait while your printer is installed. This may take a moment.
+ECHO	You will be prompted to press a key when finished. 
+ECHO.
+
+REM		***Add Location
+IF %L%==1 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %L%==1 rundll32 printui.dll,PrintUIEntry /ia /m "PCL6 Driver for Universal Print" /f "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf"
+IF %L%==1 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf" /r ">print_queue<" /m "PCL6 Driver for Universal Print"
+
+REM		***Add Location
+IF %L%==2 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+ECHO.
+ECHO Note: This printer takes much longer than others to install (~1-3 min)
+ECHO.
+IF %L%==2 rundll32 printui.dll,PrintUIEntry /ia /m "HP Universal Printing PCL 6" /h "x64" /v 3 /f "%~dp0\Drivers\HP UPD\hpcu186u.inf"
+IF %L%==2 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\HP UPD\hpcu186u.inf" /r ">print_queue<" /m "HP Universal Printing PCL 6"
+
+REM		***Add Location
+IF %L%==3 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %L%==3 rundll32 printui.dll,PrintUIEntry /ia /m "RICOH Aficio SP 3510DN PCL 6" /f "%~dp0\Drivers\Aficio 3510DN\GIE6.inf"  
+IF %L%==3 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 3510DN\GIE6.inf" /r ">print_queue<" /m "RICOH Aficio SP 3510DN PCL 6"
+
+REM		***Add Location
+IF %L%==4 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %L%==4 rundll32 printui.dll,PrintUIEntry /ia /m "RICOH Aficio SP 3510DN PCL 6" /f "%~dp0\Drivers\Aficio 3510DN\GIE6.inf"
+IF %L%==4 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 3510DN\GIE6.inf" /r ">print_queue<" /m "RICOH Aficio SP 3510DN PCL 6"
+
+REM		***Add Location
+IF %L%==5 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %L%==5 rundll32 printui.dll,PrintUIEntry /ia /m "PCL6 Driver for Universal Print" /f "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf"
+IF %L%==5 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf" /r ">print_queue<" /m "PCL6 Driver for Universal Print"
+
+REM		***Add Location
+IF %L%==6 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %L%==6 rundll32 printui.dll,PrintUIEntry /ia /m "HP Universal Printing PCL 6" /f "%~dp0\Drivers\HP UPD\hpcu186u.inf"
+IF %L%==6 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\HP UPD\hpcu186u.inf" /r ">print_queue<" /m "HP Universal Printing PCL 6"
+
+REM		***Add Location
+IF %L%==7 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %L%==7 rundll32 printui.dll,PrintUIEntry /ia /m "RICOH Aficio SP 8200DN PCL 6" /f "%~dp0\Drivers\Aficio 8200DN\OEMSETUP.inf"
+IF %L%==7 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 8200DN\OEMSETUP.inf" /r ">print_queue<" /m "RICOH Aficio SP 8200DN PCL 6"
+
+REM		***Add Location
+IF %L%==8 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %L%==8 rundll32 printui.dll,PrintUIEntry /ia /m "RICOH Aficio SP 3510DN PCL 6" /f "%~dp0\Drivers\Aficio 3510DN\GIE6.inf"
+IF %L%==8 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 3510DN\GIE6.inf" /r ">print_queue<" /m "RICOH Aficio SP 3510DN PCL 6"
+
+REM		***Add Location
+IF %L%==9 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %L%==9 rundll32 printui.dll,PrintUIEntry /ia /m "PCL6 Driver for Universal Print" /f "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf"
+IF %L%==9 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 4310DN\OEMSETUP.inf" /r ">print_queue<" /m "PCL6 Driver for Universal Print"
+
+ECHO.
+ECHO Printer installed.
+PAUSE
+
+REM 	***Loop to Menu***
+GOTO MENU
+
+REM 	********************
+REM		***Classroom Section
+REM 	********************
+
+REM 	***sets classroom menu
+:CRPRINTERS
+
+REM 	***clears script
+CLS
+REM 	***sets color
+Color 17
+REM 	***this is what the menu will appear as to the user
+ECHO ------------------------------------
+ECHO  Install Computer Classroom Printer
+ECHO ------------------------------------
+ECHO 1. Location
+ECHO 2. Location
+ECHO 3. Location
+ECHO 4. Location
+ECHO 5. Location
+ECHO 6. Location
+ECHO.
+ECHO ------- Other Options ---------
+ECHO R. Install Residence Hall Printer
+ECHO L. Install Lab Printer
+ECHO.
+ECHO X. Exit Program
+ECHO.
+REM 	***end of menu
+
+REM 	***this calls for a selection. everything after the = is what the user will see
+SET /P C=Select a number, then press ENTER:
+
+REM 	***goes to residence hall menu***
+IF %C%==R GOTO RESPRINTERS
+IF %C%==r GOTO RESPRINTERS
+
+REM 	***goes to lab menu***
+IF %C%==L GOTO LABPRINTERS
+IF %C%==l GOTO LABPRINTERS
+
+REM 	***closes program***
+IF %C%==X GOTO EOF
+IF %C%==x GOTO EOF
+
+REM		***printer therefore selected, ask user to wait
+CLS
+ECHO	Please wait while your printer is installed. This may take a moment.
+ECHO	You will be prompted to press a key when finished. 
+ECHO.
+
+REM		***Add Location
+IF %C%==1 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %C%==1 rundll32 printui.dll,PrintUIEntry /ia /m "RICOH Aficio SP 3510DN PCL 6" /f "%~dp0\Drivers\Aficio 3510DN\GIE6.inf"
+IF %C%==1 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 3510DN\GIE6.inf" /r ">print_queue<" /m "RICOH Aficio SP 3510DN PCL 6"
+
+REM		***Add Location
+IF %C%==2 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %C%==2 rundll32 printui.dll,PrintUIEntry /ia /m "RICOH Aficio SP 3510DN PCL 6" /f "%~dp0\Drivers\Aficio 3510DN\GIE6.inf"
+IF %C%==2 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 3510DN\GIE6.inf" /r ">print_queue<" /m "RICOH Aficio SP 3510DN PCL 6"
+
+REM		***Add Location
+IF %C%==3 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %C%==3 rundll32 printui.dll,PrintUIEntry /ia /m "RICOH Aficio SP 3510DN PCL 6" /f "%~dp0\Drivers\Aficio 3510DN\GIE6.inf"
+IF %C%==3 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 3510DN\GIE6.inf" /r ">print_queue<" /m "RICOH Aficio SP 3510DN PCL 6"
+
+REM		***Add Location
+IF %C%==4 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %C%==4 rundll32 printui.dll,PrintUIEntry /ia /m "RICOH Aficio SP 3510DN PCL 6" /f "%~dp0\Drivers\Aficio 3510DN\GIE6.inf"
+IF %C%==4 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 3510DN\GIE6.inf" /r ">print_queue<" /m "RICOH Aficio SP 3510DN PCL 6"
+
+REM		***Add Location
+IF %C%==5 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %C%==5 rundll32 printui.dll,PrintUIEntry /ia /m "RICOH Aficio SP 3510DN PCL 6" /f "%~dp0\Drivers\Aficio 3510DN\GIE6.inf"
+IF %C%==5 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 3510DN\GIE6.inf" /r ">print_queue<" /m "RICOH Aficio SP 3510DN PCL 6"
+
+REM		***Add Location
+IF %C%==6 cscript %WINDIR%\System32\Printing_Admin_Scripts\en-US\Prnport.vbs -a -r >print_queue< -h >papercut_address< -o lpr -q >print_queue< -2e
+IF %C%==6 rundll32 printui.dll,PrintUIEntry /ia /m "RICOH Aficio SP 3510DN PCL 6" /f "%~dp0\Drivers\Aficio 3510DN\GIE6.inf"
+IF %C%==6 rundll32 printui.dll,PrintUIEntry /if /b "Location" /F "%~dp0\Drivers\Aficio 3510DN\GIE6.inf" /r ">print_queue<" /m "RICOH Aficio SP 3510DN PCL 6"
+
+ECHO.
+ECHO Printer installed.
+PAUSE
+
+
+REM 	***Loop to Menu***
+GOTO MENU
+
+
